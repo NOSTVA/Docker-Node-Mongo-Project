@@ -1,0 +1,28 @@
+GET http://localhost:8080/persons
+
+###
+
+GET http://localhost:8080/persons/645926dd90786aabcf03b697
+
+###
+DELETE http://localhost:4000/persons/64594f84da5bf528fd0fd370
+
+###
+POST http://localhost:4000/persons
+Content-Type: application/json
+
+{
+    "name": "moahmed saeed",
+    "age": 20,
+    "email": "mohamed@gmail.com",
+    "gender": "male"
+}
+
+###
+PUT http://localhost:8080/persons/64592ba379814182956e9c7d
+Content-Type: application/json
+
+{
+    "age": 20,
+    "phone": "0123012301203"
+}
