@@ -3,8 +3,12 @@ const router = express.Router();
 const Person = require("../models/Person");
 
 router.get("/", async function (req, res, next) {
-  const persons = await Person.find();
-  res.json(persons);
+  try {
+    const persons = await Person.find();
+    res.json(persons);
+  } catch (err) {
+    next(err);
+  }
 });
 
 router.get("/:id", async function (req, res, next) {
