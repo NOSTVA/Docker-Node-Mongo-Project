@@ -1,8 +1,3 @@
-// setting environment variables --------------
-const port = process.env.PORT || 8080;
-const mongodb_uri =
-  process.env.MONGODB_URI || "mongodb://0.0.0.0:27017/persons";
-
 const express = require("express");
 const bodyParser = require("body-parser");
 const connectDB = require("./config/db");
@@ -12,39 +7,32 @@ const personsRouter = require("./routes/personsRouter");
 
 const app = express();
 
-app.use(
-  cors({
-    origin: "*",
-  })
-);
-
+// Middleware
+app.use(cors());
 app.use(bodyParser.json());
 
-app.get("/", (req, res, next) => {
-  res.json({
-    message: "success",
-    db: mongodb_uri,
-    port: port,
-  });
+// Routes
+app.get("/", (req, res) => {
+  res.json({ message: "success" });
 });
 
-// api routes --------------------------------
 app.use("/persons", personsRouter);
 
-// error route -------------------------------
+// Error handling
 app.use((err, req, res, next) => {
   console.error(err);
   res.status(500).json({ message: "Internal server error" });
 });
 
-// start application -------------------------
-const start = async function () {
-  try {
-    await connectDB(mongodb_uri);
-    app.listen(port, () => console.log("listening on port " + port));
-  } catch (err) {
-    console.log(err);
-  }
-};
+// Start server
+const PORT = process.env.PORT || 8080;
+const MONGODB_URI =
+  process.env.MONGODB_URI || "mongodb://0.0.0.0:27017/persons";
 
-start();
+connectDB(MONGODB_URI)
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server started on port ${PORT}`);
+    });
+  })
+  .catch((err) => console.log(err.message));
