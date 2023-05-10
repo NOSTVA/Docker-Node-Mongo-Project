@@ -1,10 +1,13 @@
 # SIM Cloud Computing Project
 This project is a Docker-based RESTful API for managing people. It provides functionality to create, retrieve, update, and delete person documents.
 
+## Docker Image
+You can find the Docker image for this project on Docker Hub at the following link: https://hub.docker.com/r/mohamedbekhit/docker-basic-api
+
 ## How to run
 To run the project, follow these steps:
 1. Clone the complete project from GitHub:
-```code
+```code 
 git clone https://github.com/NOSTVA/Docker-Node-Mongo-Project.git
 ```
 2. Navigate to the back-end folder in the terminal:
@@ -16,6 +19,19 @@ cd back-end
 docker compose up
 ```
 That's it! The application should now be running on http://localhost:8080
+
+## Running the Docker Application on a Different Port
+
+By default, the Docker application runs on port 8080. If this port does not work for you, follow these steps:
+
+1. Update the port mapping in the docker-compose.yml file to the desired port.
+2. Navigate to the front-end directory and install the necessary packages using the command: ```npm install ```
+3. Update the App.js component functions in the front-end folder to use the new port.
+4. Rebuild the React app using the command:```npm run build```
+5. Copy the files in the generated build folder to the public folder in the back-end folder.
+
+
+With these steps, you should now be able to run the Docker application on the desired port and have the front-end communicate with the server properly.
 
 ## Preview
 Note: To edit a field in the table, simply click on it and press enter to submit the changes.
