@@ -34,7 +34,11 @@ By default, the Docker application runs on port 8080. If this port does not work
 With these steps, you should now be able to run the Docker application on the desired port and have the front-end communicate with the server properly.
 
 ## Preview
-Note: To edit a field in the table, simply click on it and press enter to submit the changes.
+To edit a field in the table, simply click on it and press enter to submit the changes.
+
+Please note that every field is validated, and the changes you make must meet the validation criteria. For example, the "gender" section can be changed to "female" or "male" only. If you try to enter any other value, the change will not be registered.
+
+By following the validation criteria, you can ensure that the data in the application remains accurate and consistent.
 ![alt text](https://i.ibb.co/KxNCxYy/docker-api.png)
 
 ## API endpoints
