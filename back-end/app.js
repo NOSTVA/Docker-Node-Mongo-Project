@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const connectDB = require("./config/db");
 const cors = require("cors");
-
+const path = require("path");
 const personsRouter = require("./routes/personsRouter");
 
 const app = express();
@@ -10,13 +10,13 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, "./public")));
 
 // Routes
-app.get("/", (req, res) => {
-  res.json({ message: "success" });
-});
-
 app.use("/persons", personsRouter);
+app.use("*", (req, res) => {
+  res.redirect("/");
+});
 
 // Error handling
 app.use((err, req, res, next) => {
