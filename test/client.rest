@@ -1,24 +1,23 @@
-GET http://localhost:4000/persons
+GET http://localhost:8080/persons
 ###
-GET http://localhost:4000/persons/645926dd90786aabcf03b697
+GET http://localhost:8080/persons/645926dd90786aabcf03b69G
 ###
-DELETE http://localhost:4000/persons/64594f84da5bf528fd0fd370
+DELETE http://localhost:8080/persons/645ba091b0fc2aff0c25d5bb
 ###
 POST http://localhost:8080/persons
 Content-Type: application/json
 
 {
     "name": "nostva",
-    "age": 21,
-    "email": "nostva@gmail.com",
+    "age": 20,
+    "email": "nostva9000@gmail.com",
     "gender": "male"
 }
 ###
-PUT http://localhost:4000/persons/64592ba379814182956e9c7d
+PUT http://localhost:8080/persons/645b852fff0f55e3742527c4
 Content-Type: application/json
 
 {
-    "age": 20,
-    "phone": "0123012301203"
+    "age": 20
 }
 ####

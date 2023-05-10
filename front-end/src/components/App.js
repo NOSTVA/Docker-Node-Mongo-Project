@@ -2,15 +2,18 @@ import React, { useState, useEffect } from "react";
 import PersonsField from "./PersonsField";
 import CreatePerson from "./CreatePerson";
 
+import { Container } from "@chakra-ui/react";
+
 function App() {
-  const [id, setId] = useState("");
   const [persons, setPersons] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchPersons();
   }, []);
 
   async function fetchPersons() {
+    setLoading(true);
     try {
       const res = await fetch("http://localhost:8080/persons");
       const data = await res.json();
@@ -18,19 +21,84 @@ function App() {
     } catch (err) {
       console.error(err);
     }
+    setLoading(false);
+  }
+
+  async function fetchPerson(id) {
+    setLoading(true);
+    try {
+      if (!id.trim()) {
+        fetchPersons();
+      } else {
+        const res = await fetch(`http://localhost:8080/persons/${id}`);
+        const data = await res.json();
+        data ? setPersons([data]) : setPersons([]);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+    setLoading(false);
+  }
+
+  async function updatePerson(_id, data) {
+    setLoading(true);
+    try {
+      await fetch(`http://localhost:8080/persons/${_id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      await fetchPersons();
+    } catch (err) {
+      console.error(err);
+    }
+    setLoading(false);
+  }
+
+  async function deletePerson(id) {
+    setLoading(true);
+    try {
+      await fetch(`http://localhost:8080/persons/${id}`, {
+        method: "DELETE",
+      });
+      await fetchPersons();
+    } catch (err) {
+      console.error(err);
+    }
+    setLoading(false);
+  }
+
+  async function createPerson(formData) {
+    setLoading(true);
+    try {
+      await fetch("http://localhost:8080/persons", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      await fetchPersons();
+    } catch (err) {
+      console.error(err);
+    }
+    setLoading(false);
   }
 
   return (
-    <div>
+    <Container maxW="5xl" pt={10}>
       <PersonsField
-        id={id}
-        setId={setId}
         persons={persons}
-        setPersons={setPersons}
         fetchPersons={fetchPersons}
+        fetchPerson={fetchPerson}
+        updatePerson={updatePerson}
+        deletePerson={deletePerson}
+        loading={loading}
       />
-      <CreatePerson fetchPersons={fetchPersons} />
-    </div>
+      <CreatePerson createPerson={createPerson} />
+    </Container>
   );
 }
 
