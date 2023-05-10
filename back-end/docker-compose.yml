@@ -12,9 +12,9 @@ services:
   # Node API service
   api:
     container_name: node_application
-    build: .
+    image: mohamedbekhit/docker-basic-api:latest
     ports: 
-     - 4000:8080
+     - 8080:8080
     environment:
       PORT: 8080
       MONGODB_URI: mongodb://mongo_db:27017/person
