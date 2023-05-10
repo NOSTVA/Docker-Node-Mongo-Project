@@ -40,10 +40,10 @@ function App() {
     setLoading(false);
   }
 
-  async function updatePerson(_id, data) {
+  async function updatePerson(id, data) {
     setLoading(true);
     try {
-      await fetch(`http://localhost:8080/persons/${_id}`, {
+      await fetch(`http://localhost:8080/persons/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
