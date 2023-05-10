@@ -133,6 +133,7 @@ function PersonsField({
                           value={editedValues[_id]?.name ?? name}
                           onSubmit={() => handleEditClick(_id)}
                           onCancel={() => handleCancelClick(_id)}
+                          submitOnBlur={false}
                           onEdit={() => handleEdit(_id, "name")}
                         >
                           <Tooltip label="Click to edit">
@@ -150,6 +151,7 @@ function PersonsField({
                           value={editedValues[_id]?.email ?? email}
                           onSubmit={() => handleEditClick(_id)}
                           onCancel={() => handleCancelClick(_id)}
+                          submitOnBlur={false}
                           onEdit={() => handleEdit(_id, "email")}
                         >
                           <Tooltip label="Click to edit">
@@ -167,6 +169,7 @@ function PersonsField({
                           value={editedValues[_id]?.gender ?? gender}
                           onSubmit={() => handleEditClick(_id)}
                           onCancel={() => handleCancelClick(_id)}
+                          submitOnBlur={false}
                           onEdit={() => handleEdit(_id, "gender")}
                         >
                           <Tooltip label="Click to edit">
@@ -184,6 +187,7 @@ function PersonsField({
                           value={editedValues[_id]?.age ?? age.toString()}
                           onSubmit={() => handleEditClick(_id)}
                           onCancel={() => handleCancelClick(_id)}
+                          submitOnBlur={false}
                           onEdit={() => handleEdit(_id, "age")}
                         >
                           <Tooltip label="Click to edit">
