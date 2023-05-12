@@ -15,7 +15,7 @@ function App() {
   async function fetchPersons() {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:8080/persons");
+      const res = await fetch("/persons");
       const data = await res.json();
       setPersons(data);
     } catch (err) {
@@ -30,7 +30,7 @@ function App() {
       if (!id.trim()) {
         fetchPersons();
       } else {
-        const res = await fetch(`http://localhost:8080/persons/${id}`);
+        const res = await fetch(`/persons/${id}`);
         const data = await res.json();
         data ? setPersons([data]) : setPersons([]);
       }
@@ -43,7 +43,7 @@ function App() {
   async function updatePerson(id, data) {
     setLoading(true);
     try {
-      await fetch(`http://localhost:8080/persons/${id}`, {
+      await fetch(`/persons/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -60,7 +60,7 @@ function App() {
   async function deletePerson(id) {
     setLoading(true);
     try {
-      await fetch(`http://localhost:8080/persons/${id}`, {
+      await fetch(`/persons/${id}`, {
         method: "DELETE",
       });
       await fetchPersons();
@@ -73,7 +73,7 @@ function App() {
   async function createPerson(formData) {
     setLoading(true);
     try {
-      await fetch("http://localhost:8080/persons", {
+      await fetch("/persons", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
